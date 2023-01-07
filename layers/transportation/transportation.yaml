@@ -188,6 +188,15 @@ layer:
     bicycle:
       description: |
           Original value of the [`bicycle`](http://wiki.openstreetmap.org/wiki/Key:bicycle) tag (highways only).
+    cycleway:
+      description: |
+          Original value of the [`cycleway`](http://wiki.openstreetmap.org/wiki/Key:cycleway) tag (highways only).
+    cycleway_left:
+      description: |
+          Original value of the [`cycleway:left`](http://wiki.openstreetmap.org/wiki/Key:cycleway:left) tag (highways only).
+    cycleway_right:
+      description: |
+          Original value of the [`cycleway:right`](http://wiki.openstreetmap.org/wiki/Key:cycleway:right) tag (highways only).
     foot:
       description: |
           Original value of the [`foot`](http://wiki.openstreetmap.org/wiki/Key:foot) tag (highways only).
@@ -206,7 +215,7 @@ layer:
   datasource:
     geometry_field: geometry
     srid: 900913
-    query: (SELECT geometry, class, subclass, network, oneway, ramp, brunnel, service, access, toll, expressway, layer, level, indoor, bicycle, foot, horse, mtb_scale, surface FROM layer_transportation(!bbox!, z(!scale_denominator!))) AS t
+    query: (SELECT geometry, class, subclass, network, oneway, ramp, brunnel, service, access, toll, expressway, layer, level, indoor, bicycle, cycleway, cycleway_left, cycleway_right, foot, horse, mtb_scale, surface FROM layer_transportation(!bbox!, z(!scale_denominator!))) AS t
 schema:
   - ./network_type.sql
   - ./class.sql

@@ -139,6 +139,18 @@ bicycle_field: &bicycle
   key: bicycle
   name: bicycle
   type: string
+cycleway_field: &cycleway
+  key: cycleway
+  name: cycleway
+  type: string
+cycleway_left_field: &cycleway_left
+  key: cycleway:left
+  name: cycleway_left
+  type: string
+cycleway_right_field: &cycleway_right
+  key: cycleway:right
+  name: cycleway_right
+  type: string
 foot_field: &foot
   key: foot
   name: foot
@@ -205,6 +217,9 @@ tables:
     - *public_transport
     - *man_made
     - *bicycle
+    - *cycleway
+    - *cycleway_left
+    - *cycleway_right
     - *foot
     - *horse
     - *mtb_scale
