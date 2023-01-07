@@ -151,6 +151,10 @@ cycleway_right_field: &cycleway_right
   key: cycleway:right
   name: cycleway_right
   type: string
+cycleway_both_field: &cycleway_both
+  key: cycleway:both
+  name: cycleway_both
+  type: string
 foot_field: &foot
   key: foot
   name: foot
@@ -220,6 +224,7 @@ tables:
     - *cycleway
     - *cycleway_left
     - *cycleway_right
+    - *cycleway_both
     - *foot
     - *horse
     - *mtb_scale
