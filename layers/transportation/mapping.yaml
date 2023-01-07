@@ -147,9 +147,17 @@ cycleway_left_field: &cycleway_left
   key: cycleway:left
   name: cycleway_left
   type: string
+cycleway_left_oneway_field: &cycleway_left_oneway
+  key: cycleway:left:oneway
+  name: cycleway_left_oneway
+  type: string
 cycleway_right_field: &cycleway_right
   key: cycleway:right
   name: cycleway_right
+  type: string
+cycleway_right_oneway_field: &cycleway_right_oneway
+  key: cycleway:right:oneway
+  name: cycleway_right_oneway
   type: string
 cycleway_both_field: &cycleway_both
   key: cycleway:both
@@ -223,7 +231,9 @@ tables:
     - *bicycle
     - *cycleway
     - *cycleway_left
+    - *cycleway_left_oneway
     - *cycleway_right
+    - *cycleway_right_oneway
     - *cycleway_both
     - *foot
     - *horse
