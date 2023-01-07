@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS osm_transportation_merge_linestring_gen_z11(
     layer integer
 );
 
-INSERT INTO osm_transportation_merge_linestring_gen_z11(geometry, osm_id, highway, network, construction, is_bridge, is_tunnel, is_ford, expressway, z_order, bicycle, cycleway, cycleway_left, cycleway_left_oneway, cycleway_right, cycleway_right_oneway, cycleway_both foot, horse, mtb_scale, sac_scale, access, toll, layer)
+INSERT INTO osm_transportation_merge_linestring_gen_z11(geometry, osm_id, highway, network, construction, is_bridge, is_tunnel, is_ford, expressway, z_order, bicycle, cycleway, cycleway_left, cycleway_left_oneway, cycleway_right, cycleway_right_oneway, cycleway_both, foot, horse, mtb_scale, sac_scale, access, toll, layer)
 SELECT (ST_Dump(ST_LineMerge(ST_Collect(geometry)))).geom AS geometry,
        NULL::bigint AS osm_id,
        highway,
