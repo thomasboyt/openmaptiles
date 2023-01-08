@@ -58,9 +58,10 @@ $$ LANGUAGE SQL IMMUTABLE
                 PARALLEL SAFE;
 
 -- Determine which transportation features are shown at zoom 12
-CREATE OR REPLACE FUNCTION transportation_filter_z12(highway text, construction text) RETURNS boolean AS
+CREATE OR REPLACE FUNCTION transportation_filter_z12(highway text, construction text, is_cycleway BOOLEAN) RETURNS boolean AS
 $$
 SELECT CASE
+           WHEN is_cycleway THEN TRUE
            WHEN highway IN ('unclassified', 'residential') THEN TRUE
            WHEN highway_class(highway, '', construction) IN
                (
@@ -80,10 +81,11 @@ $$ LANGUAGE SQL IMMUTABLE
 CREATE OR REPLACE FUNCTION transportation_filter_z13(highway text,
                                                      public_transport text,
                                                      construction text,
-                                                     service text) RETURNS boolean AS
+                                                     service text,
+                                                     is_cycleway boolean) RETURNS boolean AS
 $$
 SELECT CASE
-           WHEN transportation_filter_z12(highway, construction) THEN TRUE
+           WHEN transportation_filter_z12(highway, construction, is_cycleway) THEN TRUE
            WHEN highway = 'service' OR construction = 'service' THEN service NOT IN ('driveway', 'parking_aisle')
            WHEN highway_class(highway, public_transport, construction) IN ('minor', 'minor_construction') THEN TRUE
            ELSE FALSE

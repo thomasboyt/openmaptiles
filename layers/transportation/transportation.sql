@@ -441,7 +441,7 @@ FROM (
          WHERE NOT is_area
            AND
                CASE WHEN zoom_level = 12 THEN
-                         CASE WHEN transportation_filter_z12(hl.highway, hl.construction) THEN TRUE
+                         CASE WHEN transportation_filter_z12(hl.highway, hl.construction, is_cycleway(hl.highway, bicycle, cycleway, cycleway_left, cycleway_right, cycleway_both)) THEN TRUE
                               WHEN hl.highway IN ('track', 'path') THEN n.route_rank = 1
                          END
                     WHEN zoom_level = 13 THEN
@@ -450,7 +450,7 @@ FROM (
                                                                    OR n.route_rank BETWEEN 1 AND 2
                                                                    OR hl.sac_scale <> ''
                                                                    )
-                              ELSE transportation_filter_z13(hl.highway, public_transport, hl.construction, service)
+                              ELSE transportation_filter_z13(hl.highway, public_transport, hl.construction, service, is_cycleway(hl.highway, bicycle, cycleway, cycleway_left, cycleway_right, cycleway_both))
                          END
                     WHEN zoom_level >= 14 THEN
                          CASE WHEN man_made='pier' THEN NOT ST_IsClosed(hl.geometry)
