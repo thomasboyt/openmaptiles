@@ -188,24 +188,20 @@ layer:
     bicycle:
       description: |
           Original value of the [`bicycle`](http://wiki.openstreetmap.org/wiki/Key:bicycle) tag (highways only).
-    cycleway:
+    is_cycleway:
       description: |
-          Original value of the [`cycleway`](http://wiki.openstreetmap.org/wiki/Key:cycleway) tag (highways only).
-    cycleway_left:
+          Whether or not this is a cycleway.
+    cycleway_type:
       description: |
-          Original value of the [`cycleway:left`](http://wiki.openstreetmap.org/wiki/Key:cycleway:left) tag (highways only).
-    cycleway_left_oneway:
+          The type of cycleway.
+      values:
+        - lane
+        - shared_lane
+        - track
+    cycleway_oneway:
       description: |
-          Original value of the [`cycleway:left:oneway`](http://wiki.openstreetmap.org/wiki/Key:cycleway:left:oneway) tag (highways only).
-    cycleway_right:
-      description: |
-          Original value of the [`cycleway:right`](http://wiki.openstreetmap.org/wiki/Key:cycleway:right) tag (highways only).
-    cycleway_right_oneway:
-      description: |
-          Original value of the [`cycleway:right:oneway`](http://wiki.openstreetmap.org/wiki/Key:cycleway:right:oneway) tag (highways only).
-    cycleway_both:
-      description: |
-          Original value of the [`cycleway:both`](http://wiki.openstreetmap.org/wiki/Key:cycleway:both) tag (highways only).
+          The direction of the cycleway.
+      values: [1, 0, -1]
     foot:
       description: |
           Original value of the [`foot`](http://wiki.openstreetmap.org/wiki/Key:foot) tag (highways only).
@@ -224,7 +220,7 @@ layer:
   datasource:
     geometry_field: geometry
     srid: 900913
-    query: (SELECT geometry, class, subclass, network, oneway, ramp, brunnel, service, access, toll, expressway, layer, level, indoor, bicycle, cycleway, cycleway_left, cycleway_left_oneway, cycleway_right, cycleway_right_oneway, cycleway_both, foot, horse, mtb_scale, surface FROM layer_transportation(!bbox!, z(!scale_denominator!))) AS t
+    query: (SELECT geometry, class, subclass, network, oneway, ramp, brunnel, service, access, toll, expressway, layer, level, indoor, bicycle, is_cycleway, cycleway_type, cycleway_oneway, foot, horse, mtb_scale, surface FROM layer_transportation(!bbox!, z(!scale_denominator!))) AS t
 schema:
   - ./network_type.sql
   - ./cycleway.sql
